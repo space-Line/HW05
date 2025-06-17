@@ -18,7 +18,7 @@ void AMyActor::BeginPlay() {
 }
 
 int AMyActor::Step() {
-    return FMath::RandRange(0, 1); // 0 ¶Ç´Â 1 ·£´ý ¹ÝÈ¯
+    return FMath::RandRange(0, 1); // 0 ë˜ëŠ” 1 ëžœë¤ ë°˜í™˜
 }
 
 void AMyActor::Move() {
@@ -28,7 +28,7 @@ void AMyActor::Move() {
         int dx = Step();
         int dy = Step();
 
-        // ÀÌµ¿ °Å¸® Á¦ÇÑ È®ÀÎ (µÑ ´Ù 2 ÀÌ»ó ÀÌµ¿ ºÒ°¡)
+        // ì´ë™ ê±°ë¦¬ ì œí•œ í™•ì¸ (ë‘˜ ë‹¤ 2 ì´ìƒ ì´ë™ ë¶ˆê°€)
         if (dx >= 2 || dy >= 2) continue;
 
         if (rand() % 2 == 0) {
@@ -38,9 +38,11 @@ void AMyActor::Move() {
 
         Start.X += dx;
         Start.Y += dy;
+        
+        distance = FVector::Dist(FVector(0, 0, 0), Start);
+        UE_LOG(LogTemp, Warning, TEXT("Distance : %f"), distance);
 
         UE_LOG(LogTemp, Log, TEXT("Step Position = (%f, %f)"), Start.X, Start.Y);
     }
-    distance = FVector::Dist(FVector(0, 0, 0), Start);
-    UE_LOG(LogTemp, Warning, TEXT("Distance : %f, Event Count : %d"), distance, event);
+    UE_LOG(LogTemp, Warning, TEXT("Event Count : %d"), event);
 }
